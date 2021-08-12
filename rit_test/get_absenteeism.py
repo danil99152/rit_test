@@ -1,4 +1,4 @@
-from main import dates
+from data import dates
 
 
 def get_absenteeism():

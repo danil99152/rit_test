@@ -1,4 +1,4 @@
-from main import get_dates
+from data import get_dates
 
 
 def get_time_by_day():

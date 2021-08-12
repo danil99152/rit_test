@@ -1,6 +1,6 @@
 import os
 
-from main import get_projects
+from data import get_projects
 import seaborn as sns
 
 def generate_graph():

@@ -1,8 +1,26 @@
-from main import profitability
+import pandas as pd
+
+from data import profitability, get_data
+from get_hourcost_by_man import get_hourcost_by_man
+
+def get_projects():
+    data_a, _, _ = get_data()
+    data_a = data_a.merge(get_hourcost_by_man().filter(['Worker', 'Rate'], axis=1), on=['Worker', 'Worker'], how='left')
+    data_a['Cost'] = data_a['Hours'] * data_a['Rate']
+    data_a = data_a.drop(['Rate'], axis=1)
+    projects = pd.DataFrame(data={'Task': [], 'Cost': []})
+    for project in data_a['Task'].unique():
+        task = data_a[data_a['Task'] == project]['Task']
+        cost = data_a[data_a['Task'] == project]['Cost'].sum()
+        projects = projects.append({'Task': task.values[0], 'Cost': cost}, ignore_index=True)
+        return projects
 
 def get_profitability():
-    prof,_ = profitability()
-    print("Рентабельность проекта =", prof)
+    projects = get_projects()
+    income = 24000
+    profit = income - projects['Cost'].sum()
+    prof = (profit * 100) / income
+    print(prof)
 
 if __name__ == '__main__':
     get_profitability()

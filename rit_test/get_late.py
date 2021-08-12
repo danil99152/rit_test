@@ -1,4 +1,4 @@
-from main import late
+from data import late
 
 
 def get_late():

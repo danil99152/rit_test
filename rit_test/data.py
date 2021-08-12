@@ -10,37 +10,37 @@ def get_data():
     data_c = pd.read_table(os.path.join(path, 'Приложение C')).rename(columns={"Исполнитель": "Worker", "Ставка": "Rate"})
     return data_a, data_b, data_c
 
+
+if __name__ == '__main__':
+    get_data()
 """# Анализ
 
 ## Общие трудозатраты на проект в часах
 """
-def hourcost():
-    data_a,_,_ = get_data()
-    hourcost = pd.DataFrame(data={'Task': [], 'Hours': []})
-    for project in data_a['Task'].unique():
-        task = data_a[data_a['Task'] == project]['Task']
-        hours = data_a[data_a['Task'] == project]['Hours'].sum()
-        return hourcost.append({'Task': task.values[0], 'Hours': hours}, ignore_index=True)
-
-def getNum(value):  # get a number of task
-    return [int(s) for s in value.split('-') if s.isdigit()][0]
-
-"""## Среднее время, затраченное на решение задач каждым из исполнителей в часах"""
-
-def get_hourcost_by_man():
-    data_a,_,data_c = get_data()
-    hourcost_by_man = pd.DataFrame(data={'Worker': [], 'Hours': [], 'Mean time': []})
-    for project in data_a['Worker'].unique():
-        task = data_a[data_a['Worker'] == project]['Worker']
-        hours = data_a[data_a['Worker'] == project]['Hours'].sum()
-        mean_hours = hours / len(data_a[data_a['Worker'] == project]['Hours'])
-        hourcost_by_man = hourcost_by_man.append({'Worker': task.values[0], 'Hours': hours, 'Mean time': mean_hours},
-                                                 ignore_index=True)
-        hourcost_by_man = hourcost_by_man.merge(data_c, on=['Worker', 'Worker'], how='left')
-        hourcost_by_man['Salary'] = hourcost_by_man['Hours'] * hourcost_by_man['Rate']
-        return hourcost_by_man
-
-"""## Рентабельность"""
+# def hourcost():
+#     data_a,_,_ = get_data()
+#     hourcost = pd.DataFrame(data={'Task': [], 'Hours': []})
+#     for project in data_a['Task'].unique():
+#         task = data_a[data_a['Task'] == project]['Task']
+#         hours = data_a[data_a['Task'] == project]['Hours'].sum()
+#         return hourcost.append({'Task': task.values[0], 'Hours': hours}, ignore_index=True)
+#
+# """## Среднее время, затраченное на решение задач каждым из исполнителей в часах"""
+#
+# def get_hourcost_by_man():
+#     data_a,_,data_c = get_data()
+#     hourcost_by_man = pd.DataFrame(data={'Worker': [], 'Hours': [], 'Mean time': []})
+#     for project in data_a['Worker'].unique():
+#         task = data_a[data_a['Worker'] == project]['Worker']
+#         hours = data_a[data_a['Worker'] == project]['Hours'].sum()
+#         mean_hours = hours / len(data_a[data_a['Worker'] == project]['Hours'])
+#         hourcost_by_man = hourcost_by_man.append({'Worker': task.values[0], 'Hours': hours, 'Mean time': mean_hours},
+#                                                  ignore_index=True)
+#         hourcost_by_man = hourcost_by_man.merge(data_c, on=['Worker', 'Worker'], how='left')
+#         hourcost_by_man['Salary'] = hourcost_by_man['Hours'] * hourcost_by_man['Rate']
+#         return hourcost_by_man
+#
+# """## Рентабельность"""
 
 def profitability():
     data_a,_,_ = get_data()
