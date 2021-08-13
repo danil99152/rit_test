@@ -1,35 +1,35 @@
 from setuptools import setup
 
 setup(
-name='gethourcost',
+name='hourcost',
     entry_points={
         'console_scripts': [
-            'gethourcost = get_hourcost',
+            'hourcost = get_hourcost:print_hourcost',
         ],
     }
 )
 setup(
-name='gethourcostbyman',
+name='hourcostbyman',
     entry_points={
         'console_scripts': [
-            'gethourcostbyman = get_hourcost_by_man',
+            'hourcostbyman = get_hourcost_by_man:print_hourcost_by_man',
         ],
     }
 )
 
 setup(
-name='getprofability',
+name='profitability',
     entry_points={
         'console_scripts': [
-            'getprofability = get_profability',
+            'profitability = get_profitability:get_profitability',
         ],
     }
 )
 setup(
-name='gettimebyday',
+name='timebyday',
     entry_points={
         'console_scripts': [
-            'gettimebyday = get_time_by_day',
+            'timebyday = get_time_by_day:get_time_by_day',
         ],
     }
 )
@@ -37,7 +37,7 @@ setup(
 name='getlazy',
     entry_points={
         'console_scripts': [
-            'getlazy = get_lazy_employee',
+            'getlazy = get_lazy_employee:get_lazy_employee',
         ],
     }
 )
@@ -45,15 +45,15 @@ setup(
 name='getabsenteeism',
     entry_points={
         'console_scripts': [
-            'getabsenteeism = get_absenteeism',
+            'getabsenteeism = get_absenteeism:get_absenteeism',
         ],
     }
 )
 setup(
-name='getlate',
+name='lates',
     entry_points={
         'console_scripts': [
-            'getlate = get_late',
+            'lates = get_late:get_late',
         ],
     }
 )
@@ -61,15 +61,15 @@ setup(
 name='generategraph',
     entry_points={
         'console_scripts': [
-            'generategraph = generate_graph',
+            'generategraph = generate_graph:generate_graph',
         ],
     }
 )
 setup(
-    name='help',
+    name='pleasehelp',
     entry_points={
         'console_scripts': [
-            'help = help',
+            'pleasehelp = help:help',
         ],
     }
 )

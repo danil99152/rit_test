@@ -7,7 +7,7 @@ def get_hourcost():
     for project in data_a['Task'].unique():
         task = data_a[data_a['Task'] == project]['Task']
         hours = data_a[data_a['Task'] == project]['Hours'].sum()
-        hourcost.append({'Task': task.values[0], 'Hours': hours}, ignore_index=True)
+        hourcost = hourcost.append({'Task': task.values[0], 'Hours': hours}, ignore_index=True)
     return hourcost
 
 def print_hourcost():

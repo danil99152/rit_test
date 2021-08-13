@@ -1,7 +1,8 @@
-from data import dates
+from get_time_by_day import get_dates
 
 
 def get_absenteeism():
+    dates = get_dates()
     days = dates['Date'].drop_duplicates()
     for employee in dates['Worker'].unique():
         print(f"Дни отсутствия исполнителя {employee}:")
@@ -11,3 +12,6 @@ def get_absenteeism():
         else:
             for i in workdays[workdays == False].index:
                 print(dates[dates['Day of week'] < 5]['Date'].loc[i])
+
+if __name__ == '__main__':
+    get_absenteeism()
